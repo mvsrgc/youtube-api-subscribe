@@ -1,7 +1,9 @@
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
+import os
 import re
+import sys
 import csv
 import argparse
 
@@ -54,6 +56,10 @@ def subscribe_to_channels(credentials, channel_urls):
             print(f"Invalid URL: {url}")
 
 def read_urls_from_csv(file_path):
+    if not os.path.isfile(file_path):
+        print(f"Error: CSV file '{file_path}' not found.")
+        sys.exit(1)
+
     channel_urls = []
     with open(file_path, newline='') as csvfile:
         reader = csv.reader(csvfile)
@@ -64,6 +70,10 @@ def read_urls_from_csv(file_path):
     return channel_urls
 
 def get_oauth_credentials(client_secrets_file, scopes):
+    if not os.path.isfile(client_secrets_file):
+        print(f"Error: Client secrets file '{client_secrets_file}' not found.")
+        sys.exit(1)
+
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
         client_secrets_file, scopes)
     credentials = flow.run_local_server(port=0)
