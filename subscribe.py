@@ -70,7 +70,7 @@ def get_oauth_credentials(client_secrets_file, scopes):
     return credentials
 
 def main(client_secrets_file, csv_file_path):
-    scopes = ["https://www.googleapis.com/auth/youtube.force-ssl", "https://www.googleapis.com/auth/youtube"]
+    scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
     credentials = get_oauth_credentials(client_secrets_file, scopes)
     channel_urls = read_urls_from_csv(csv_file_path)
     subscribe_to_channels(credentials, channel_urls)
