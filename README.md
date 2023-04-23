@@ -13,6 +13,13 @@ You can install the required packages using the following command:
 pip install google-api-python-client google-auth-oauthlib
 ```
 
+### Export your YouTube subscriptions
+1. Go to the [Google takeout manager](https://takeout.google.com/takeout/custom/youtube).
+2. Log in if asked.
+3. Click on "All YouTube data included", then on "Deselect all", then select only "subscriptions" and click "OK".
+4. Click on "Next step" and then on "Create export".
+5. Click on the "Download" button after it appears. (This is the CSV the script will use.)
+
 ## Setup
 
 1. Create a new project in the [Google Developers Console](https://console.developers.google.com/).
