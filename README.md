@@ -30,7 +30,7 @@ pip install google-api-python-client google-auth-oauthlib
 
 ## Usage
 ```
-usage: python subscribe_tool.py [--secrets SECRETS] [--csv CSV]
+usage: python subscribe.py [--secrets SECRETS] [--csv CSV]
 
 Subscribe to a list of YouTube channels from a CSV file.
 
@@ -42,7 +42,7 @@ optional arguments:
 ## Example
 
 To subscribe to the channels listed in a CSV file called `channels.csv` using the `client_secrets.json` file for authentication, run the following command:
-```python subscribe_tool.py --secrets client_secrets.json --csv channels.csv```
+```python subscribe.py --secrets client_secrets.json --csv channels.csv```
 
 
 ## License
