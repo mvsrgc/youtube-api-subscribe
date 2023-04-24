@@ -6,6 +6,7 @@ import re
 import sys
 import csv
 import argparse
+import time
 
 def get_channel_id(youtube, url):
     """
@@ -30,7 +31,7 @@ def get_channel_id(youtube, url):
 
     return None
 
-def subscribe_to_channels(credentials, channel_urls):
+def subscribe_to_channels(credentials, channel_urls, delay=1):
     youtube = googleapiclient.discovery.build("youtube", "v3", credentials=credentials)
 
     for url in channel_urls:
@@ -55,17 +56,23 @@ def subscribe_to_channels(credentials, channel_urls):
         else:
             print(f"Invalid URL: {url}")
 
+        time.sleep(delay) # Avoid rate limits
+
 def read_urls_from_csv(file_path):
     if not os.path.isfile(file_path):
         print(f"Error: CSV file '{file_path}' not found.")
         sys.exit(1)
 
     channel_urls = []
-    with open(file_path, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        next(reader, None)  # Skip the header
-        for row in reader:
-            channel_urls.append(row[1])  # URLs are in the second column
+    try:
+        with open(file_path, newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            next(reader, None)  # Skip the header
+            for row in reader:
+                channel_urls.append(row[1])  # URLs are in the second column
+    except Exception as error:
+        print(f"Error reading CSV file: {error}")
+        sys.exit(1)
 
     return channel_urls
 
