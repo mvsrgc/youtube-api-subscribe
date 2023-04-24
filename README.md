@@ -26,7 +26,7 @@ pip install google-api-python-client google-auth-oauthlib
 2. Enable the YouTube Data API v3 for your project.
 3. Create OAuth 2.0 credentials and download the client secrets JSON file. (Make sure to add the [/auth/youtube](https://www.googleapis.com/auth/youtube.force-ssl) scope in the OAuth consent screen) 
 4. Rename the downloaded file to `client_secrets.json` and place it in the same directory as the script.
-5. Prepare a CSV file with the list of YouTube channel URLs you want to subscribe to. The CSV should have a header row with the second column labeled "URL", and each subsequent row should contain a YouTube channel URL. (This is the default format of the exported subscription data from YouTube.)
+5. Place the CSV file from Google takeout in the same directory as the script and name it `channels.csv`.
 
 ## Usage
 ```
