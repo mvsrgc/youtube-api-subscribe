@@ -8,17 +8,7 @@ import csv
 import argparse
 import time
 
-def get_channel_id(youtube, url):
-    """
-    Extracts the channel ID from a given YouTube URL.
-
-    Args:
-        youtube: A YouTube API client instance.
-        url (str): The YouTube channel URL.
-
-    Returns:
-        str: The channel ID if found, None otherwise.
-    """
+def get_channel_id(url):
     patterns = [
         r"(?<=channel/)[a-zA-Z0-9_-]+",  # Channel URL
         r"(?<=user/)[a-zA-Z0-9_-]+"      # User URL
@@ -35,7 +25,7 @@ def subscribe_to_channels(credentials, channel_urls, delay=1):
     youtube = googleapiclient.discovery.build("youtube", "v3", credentials=credentials)
 
     for url in channel_urls:
-        channel_id = get_channel_id(youtube, url)
+        channel_id = get_channel_id(url)
         if channel_id:
             try:
                 youtube.subscriptions().insert(
